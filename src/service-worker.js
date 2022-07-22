@@ -9,7 +9,7 @@
 
 // import { clientsClaim } from 'workbox-core';
 // import { ExpirationPlugin } from 'workbox-expiration';
-// import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
+import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 // import { registerRoute } from 'workbox-routing';
 // import { StaleWhileRevalidate } from 'workbox-strategies';
 
@@ -19,7 +19,7 @@
 // // Their URLs are injected into the manifest variable below.
 // // This variable must be present somewhere in your service worker file,
 // // even if you decide not to use precaching. See https://cra.link/PWA
-// precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(window.self.__WB_MANIFEST);
 
 // // Set up App Shell-style routing, so that all navigation requests
 // // are fulfilled with your index.html shell. Learn more at
@@ -78,7 +78,7 @@ let urlsToCache = [
 ];
 
 // Install a service worker
-self.addEventListener('install', event => {
+window.self.addEventListener('install', event => {
   // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -90,7 +90,7 @@ self.addEventListener('install', event => {
 });
 
 // Cache and return requests
-self.addEventListener('fetch', event => {
+window.self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
@@ -105,7 +105,7 @@ self.addEventListener('fetch', event => {
 });
 
 // Update a service worker
-self.addEventListener('activate', event => {
+window.self.addEventListener('activate', event => {
   let cacheWhitelist = ['test-pwa'];
   event.waitUntil(
     caches.keys().then(cacheNames => {
