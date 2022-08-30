@@ -3,10 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+const installapp = () => {
+  //check if the app is installed
+
+
+
+
+
+  //if not then install the app
+
+}
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <h1> I am astro app </h1>
+        <button onClick={installapp()}> Install App</button>
+
         <p>
           I am pwa test app
         </p>
